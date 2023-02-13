@@ -1,7 +1,8 @@
 # on new issue
 on:
-  issues:
-    types: [opened, edited]
+  push:
+    branches:
+      - main
 
 name: Broken Link Check
 jobs:
