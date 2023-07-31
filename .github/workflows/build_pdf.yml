@@ -1,0 +1,16 @@
+name: Build PDF
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: build pdf
+    runs-on: ubuntu-latest
+    steps:
+      - uses: browser-actions/setup-chrome@v1
+      - run: |
+          cd website && npm i && npm run build_pdf
