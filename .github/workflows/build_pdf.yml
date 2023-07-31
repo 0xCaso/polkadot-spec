@@ -8,9 +8,18 @@ on:
 
 jobs:
   build:
-    name: build pdf
+    name: test build pdf
     runs-on: ubuntu-latest
     steps:
       - uses: browser-actions/setup-chrome@v1
-      - run: |
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "18.x"
+      - name: Initialize submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule update --remote
+      - name: Build PDF
+        run: |
           cd website && npm i && npm run build_pdf
